@@ -46,7 +46,8 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.accompanist.permissions)
     implementation(libs.accompanist.permissions.v0340)
-    
+    implementation(libs.androidx.navigation.compose)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
