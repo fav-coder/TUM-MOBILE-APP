@@ -31,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,73 +40,62 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import com.example.studentbuddy.R
+import java.nio.file.WatchEvent
 
 @Composable
-fun HomeDashboard(innerPadding: PaddingValues = PaddingValues(),navController: NavHostController) {
+fun HomeDashboard(innerPadding: PaddingValues = PaddingValues(), navController: NavHostController) {
     Box(
         modifier = Modifier.fillMaxSize()
+
     ) {
 
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()       // or .fillMaxSize()
-                .height(250.dp),      // give it visible height
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.mobasa_tum),
-                contentDescription = "Campus Logo",
-                contentScale = ContentScale.Crop, // Crop for sharp center focus
-                modifier = Modifier
-                    .size(150.dp) // Big enough to notice blurring
-                    .clip(CircleShape)
-                    .border(2.dp, Color.Gray, CircleShape)
-            )
-
-
-        }
-
-
-
-
-
-
         AsyncImage(
-            model = R.drawable.fern,
+            model = R.drawable.kenya_map,
             contentDescription = "background image",
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .alpha(0.5f)
                 .fillMaxSize()
         )
-        Column {
+
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Column(
                 modifier = Modifier
                     .padding(innerPadding)
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState()),
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.Start,
 
                 )
+
             {
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
                     modifier = Modifier
-                        .padding(12.dp)
                         .fillMaxWidth()
-
-                ) {
-
+                        .height(250.dp),
 
 
+                    )
+
+
+                {
+                    Image(
+                        painter = painterResource(id = R.drawable.mobasa_tum),
+                        contentDescription = "Campus Logo",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(150.dp)
+                            .clip(CircleShape)
+                            .border(2.dp, Color.Gray, CircleShape)
+                    )
                 }
 
 
             }
-            Spacer(modifier = Modifier.height(130.dp))
+            Spacer(modifier = Modifier.height(90.dp))
 
 
             Text(
@@ -156,18 +146,18 @@ fun HomeDashboard(innerPadding: PaddingValues = PaddingValues(),navController: N
                     .padding(16.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { navController.navigate("ClassScheduleAndReminders") }
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color.White.copy(alpha = 0.2f),
-                            Color.White.copy(alpha = 0.05f)
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                Color.White.copy(alpha = 0.2f),
+                                Color.White.copy(alpha = 0.05f)
+                            )
                         )
                     )
-                )
-                .graphicsLayer {
-                    alpha = 0.85f // Slightly more visible
-                    shadowElevation = 8.dp.toPx()
-                },
+                    .graphicsLayer {
+                        alpha = 0.85f // Slightly more visible
+                        shadowElevation = 8.dp.toPx()
+                    },
                 contentAlignment = Alignment.Center
             ) {
                 Text(

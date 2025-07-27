@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 @Composable
-fun CampusBuddyNavGraph(navController: NavHostController) {
+fun CampusBuddyNavGraph(innerPadding: PaddingValues, navController: NavHostController) {
     NavHost(navController = navController, startDestination = "home") {
         composable("Home") { HomeDashboard(innerPadding = PaddingValues(), navController) } // call your actual home screen here
         composable("ClassScheduleAndReminders") { TimetableScreen(navController) }
