@@ -47,6 +47,13 @@ dependencies {
     implementation(libs.accompanist.permissions)
     implementation(libs.accompanist.permissions.v0340)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.ui)
+    implementation(libs.androidx.activity.compose.v172)
+    implementation(libs.coil.kt.coil.compose)
+
+
+
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -16,7 +16,7 @@ fun CampusBuddyNavGraph(innerPadding: PaddingValues, navController: NavHostContr
         composable("LostAndFound") { LostAndFoundScreen(navController) }
         composable("QuickHelp") { QuickHelpScreen(navController) }
         composable("QuickFAQ") { QuickFAQScreen(navController) }
-        composable("Events") { EventsScreen(navController) }
+        composable("Events") { EventsScreen(navController,innerPadding = PaddingValues()) }
 
 
     }
