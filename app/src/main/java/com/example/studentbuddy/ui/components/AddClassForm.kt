@@ -59,7 +59,9 @@ fun AddClassForm(onAdd: (ClassScheduleItem) -> Unit) {
             ),
             enabled = listOf(day, courseName, time, location).all { it.isNotBlank() }
         ) {
-            Text("Add Class")
+            Text("Add Class",
+            color = Color.Black
+            )
         }
     }
 }
