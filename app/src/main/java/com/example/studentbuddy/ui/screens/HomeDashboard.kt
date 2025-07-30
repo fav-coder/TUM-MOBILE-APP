@@ -82,14 +82,8 @@ Box(
                     .padding(16.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { navController.navigate("Map") }
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Yellow.copy(alpha = 0.3f),
-                                Color.Green.copy(alpha = 0.5f)
-                            )
-                        )
-                    )
+                    .background(Color(0xFFEC9808).copy(alpha = 0.9f))
+
                     .graphicsLayer {
                         alpha = 0.85f
                         shadowElevation = 8.dp.toPx()
@@ -111,14 +105,8 @@ Box(
                     .padding(16.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { navController.navigate("ClassScheduleAndReminders") }
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Yellow.copy(alpha = 0.3f),
-                                Color.Green.copy(alpha = 0.5f)
-                            )
-                        )
-                    )
+                    .background(Color(0xFFEC9808).copy(alpha = 0.9f))
+
                     .graphicsLayer {
                         alpha = 0.85f
                         shadowElevation = 8.dp.toPx()
@@ -143,14 +131,8 @@ Box(
                     .padding(16.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { navController.navigate("LostAndFound") }
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Yellow.copy(alpha = 0.3f),
-                                Color.Green.copy(alpha = 0.5f)
-                            )
-                        )
-                    )
+                    .background(Color(0xFFEC9808).copy(alpha = 0.9f))
+
                     .graphicsLayer {
                         alpha = 0.85f
                         shadowElevation = 8.dp.toPx()
@@ -172,14 +154,8 @@ Box(
                     .padding(16.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { navController.navigate("Events") }
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Yellow.copy(alpha = 0.3f),
-                                Color.Green.copy(alpha = 0.5f)
-                            )
-                        )
-                    )
+                    .background(Color(0xFFEC9808).copy(alpha = 0.9f))
+
                     .graphicsLayer {
                         alpha = 0.85f
                         shadowElevation = 8.dp.toPx()
@@ -203,14 +179,8 @@ Box(
                     .padding(16.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { navController.navigate("QuickHelp") }
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Yellow.copy(alpha = 0.3f),
-                                Color.Green.copy(alpha = 0.5f)
-                            )
-                        )
-                    )
+                    .background(Color(0xFFEC9808).copy(alpha = 0.9f))
+
                     .graphicsLayer {
                         alpha = 0.85f
                         shadowElevation = 8.dp.toPx()
@@ -232,14 +202,8 @@ Box(
                     .padding(16.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { navController.navigate("QuickFAQ") }
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Yellow.copy(alpha = 0.3f),
-                                Color.Green.copy(alpha = 0.5f)
-                            )
-                        )
-                    )
+                    .background(Color(0xFFEC9808).copy(alpha = 0.9f))
+
                     .graphicsLayer {
                         alpha = 0.85f
                         shadowElevation = 8.dp.toPx()

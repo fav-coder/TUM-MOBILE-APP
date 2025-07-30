@@ -108,8 +108,8 @@ fun EventsScreen(navController: NavController, innerPadding: PaddingValues) {
             },
             modifier = Modifier.align(Alignment.End),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Green,
-                contentColor = Color.Black
+                containerColor = Color(0xFFEC9808),       // Background color
+                contentColor = Color.White
             )
         ) {
             Text(if (editingIndex == null) "Add" else "Update")
@@ -124,7 +124,7 @@ fun EventsScreen(navController: NavController, innerPadding: PaddingValues) {
         Spacer(modifier = Modifier.height(8.dp))
 
         if (events.isEmpty()) {
-            Text("No events added yet.", fontSize = 18.sp)
+            Text("No events added yet.",  color = Color(0xFFEC9808))
         } else {
             LazyColumn {
                 items(events.indices.toList()) { index ->
