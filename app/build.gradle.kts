@@ -50,6 +50,10 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.androidx.activity.compose.v172)
     implementation(libs.coil.kt.coil.compose)
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps)
+
+
 
 
 
