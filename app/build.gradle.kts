@@ -1,8 +1,15 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-}
+        alias(libs.plugins.android.application)
+        alias(libs.plugins.kotlin.android)
+        alias(libs.plugins.kotlin.compose)
+        alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+        id("kotlin-kapt") // Must be above android{} block
+    }
+
+
+
+
+
 
 android {
     namespace = "com.example.studentbuddy"
@@ -36,10 +43,13 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
 }
 
 dependencies {
+
+
     implementation(libs.coil.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.maps.compose)
@@ -50,14 +60,26 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.androidx.activity.compose.v172)
     implementation(libs.coil.kt.coil.compose)
-    implementation(libs.maps.compose)
+    implementation(libs.maps.compose.v420)
     implementation(libs.play.services.maps)
 
+    // In your module-level build.gradle.kts
 
 
 
 
 
+
+
+
+
+
+
+    // Room Database (must use consistent versions)
+    val roomVersion = "2.7.2"
+    implementation(libs.androidx.room.runtime)
+    kapt("androidx.room:room-compiler:$roomVersion") // Must be kapt
+    implementation(libs.androidx.room.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -68,6 +90,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose.android)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

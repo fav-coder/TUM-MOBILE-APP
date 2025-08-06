@@ -1,12 +1,14 @@
 package com.example.studentbuddy.ui.screens
 
-import CampusMapScreen
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.studentbuddy.data.models.ClassScheduleItem
+
 
 @Composable
 fun CampusBuddyNavGraph(innerPadding: PaddingValues, navController: NavHostController) {
@@ -24,10 +26,6 @@ fun CampusBuddyNavGraph(innerPadding: PaddingValues, navController: NavHostContr
 
         composable("map") {
             CampusMapScreen(innerPadding = PaddingValues(), navController)
-        }
-
-        composable("LostAndFound") {
-            LostAndFoundScreen(navController)
         }
 
         composable("QuickHelp") {

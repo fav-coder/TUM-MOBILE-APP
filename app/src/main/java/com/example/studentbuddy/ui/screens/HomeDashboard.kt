@@ -14,14 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
@@ -124,28 +122,7 @@ Box(
 
 
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .clickable { navController.navigate("LostAndFound") }
-                    .background(Color(0xFFEC9808).copy(alpha = 0.9f))
 
-                    .graphicsLayer {
-                        alpha = 0.85f
-                        shadowElevation = 8.dp.toPx()
-                    },
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "Lost And Found",
-                    color = Color.White,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-            }
 
             Box(
                 modifier = Modifier
