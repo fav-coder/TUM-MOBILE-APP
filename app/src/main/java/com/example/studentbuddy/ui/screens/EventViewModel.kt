@@ -1,3 +1,6 @@
+package com.example.studentbuddy.ui.screens
+
+import EventItem
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -22,7 +25,6 @@ class EventViewModel : ViewModel() {
 
 
     init {
-        observeEvents() // Real-time updates
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(true)
             .build()

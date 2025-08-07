@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.studentbuddy.ui.screens.EventViewModel
 
 @Composable
 fun EventsScreen(
@@ -88,7 +89,7 @@ fun EventsScreen(
             },
             modifier = Modifier.align(Alignment.End)
         ) {
-            Text(if (eventList.any { it.id == currentEvent.id }) "Update Event" else "Add Event")
+            Text(if (currentEvent.id.isBlank()) "Add Event" else "Update Event")
         }
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -96,7 +97,7 @@ fun EventsScreen(
         Text("Upcoming Events", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(8.dp))
 
-        LazyColumn {
+        LazyColumn(modifier = Modifier.weight(1f)) {
             items(eventList) { event ->
                 EventCard(
                     event = event,
