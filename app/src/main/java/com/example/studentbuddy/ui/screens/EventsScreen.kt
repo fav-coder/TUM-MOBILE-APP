@@ -10,31 +10,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.studentbuddy.data.models.Event
-import com.example.studentbuddy.ui.screens.EventViewModel
 
 @Composable
 fun EventsScreen(
@@ -42,185 +29,114 @@ fun EventsScreen(
     innerPadding: PaddingValues,
     viewModel: EventViewModel = viewModel()
 ) {
-    // Form state
-    var title by remember { mutableStateOf("") }
-    var date by remember { mutableStateOf("") }
-    var venue by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("") }
+    val currentEvent = viewModel.currentEvent.value
+    val eventList = viewModel.eventList
 
-    // Collect events from Room database
-    // Collect events as State
-    val events by viewModel.events.collectAsState(initial = emptyList())
-
-// Handle editing state
-    LaunchedEffect(viewModel.editingIndex) {
-        val currentIndex = viewModel.editingIndex
-        if (currentIndex != null) {
-            // Get from the current list
-            events.getOrNull(currentIndex)?.let { event ->
-                title = event.title
-                date = event.date
-                venue = event.venue
-                description = event.description
-            } ?: run {
-                // Request ViewModel to clear invalid state
-                viewModel.clearEditingState()
-            }
-        } else {
-            // Clear form when not editing
-            title = ""
-            date = ""
-            venue = ""
-            description = ""
-        }
-    }
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(36.dp),
+            .padding(innerPadding)
+            .padding(16.dp)
     ) {
-        // Header
-        Text("Add Event", style = MaterialTheme.typography.titleLarge.copy(fontSize = 20.sp, fontWeight = Bold))
-
+        Text("Add Event", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Form fields
         OutlinedTextField(
-            value = title,
-            onValueChange = { title = it },
+            value = currentEvent.title,
+            onValueChange = viewModel::updateTitle,
             label = { Text("Event Title") },
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
-
         OutlinedTextField(
-            value = date,
-            onValueChange = { date = it },
-            label = { Text("Event Date") },
-            placeholder = { Text("e.g. 30 July 2025") },
+            value = currentEvent.description,
+            onValueChange = viewModel::updateDescription,
+            label = { Text("Description") },
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
-
         OutlinedTextField(
-            value = venue,
-            onValueChange = { venue = it },
-            label = { Text("Venue") },
-            placeholder = { Text("Event Venue") },
+            value = currentEvent.date,
+            onValueChange = viewModel::updateDate,
+            label = { Text("Date (e.g. 2025-08-10)") },
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        OutlinedTextField(
+            value = currentEvent.time,
+            onValueChange = viewModel::updateTime,
+            label = { Text("Time (e.g. 10:00 AM)") },
+            modifier = Modifier.fillMaxWidth()
+        )
 
         OutlinedTextField(
-            value = description,
-            onValueChange = { description = it },
-            label = { Text("Event Description") },
+            value = currentEvent.location,
+            onValueChange = viewModel::updateLocation,
+            label = { Text("Location") },
             modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Submit button
         Button(
             onClick = {
-                if (title.isNotBlank() && date.isNotBlank()) {
-                    val event = Event(
-                        title = title.trim(),
-                        date = date.trim(),
-                        venue = venue.trim(),
-                        description = description.trim()
-                    )
-                    viewModel.addOrUpdateEvent(event)
-
-                    // Immediate local state reset (better UX)
-                    if (viewModel.editingIndex == null) {
-                        title = ""
-                        date = ""
-                        venue = ""
-                        description = ""
-                    }
+                if (currentEvent.id.isBlank()) {
+                    viewModel.addEvent()
+                } else {
+                    viewModel.updateEvent()
                 }
             },
-            modifier = Modifier.align(Alignment.End),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFEC9808),
-                contentColor = Color.White
-            )
+            modifier = Modifier.align(Alignment.End)
         ) {
-            Text(if (viewModel.editingIndex == null) "Add" else "Update")
+            Text(if (eventList.any { it.id == currentEvent.id }) "Update Event" else "Add Event")
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-        HorizontalDivider()
+        Spacer(modifier = Modifier.height(24.dp))
 
-        // Events list
-        Spacer(modifier = Modifier.height(8.dp))
-        Text("Upcoming Events", style = MaterialTheme.typography.titleMedium.copy(fontSize = 20.sp))
-
+        Text("Upcoming Events", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(8.dp))
 
-        when {
-            events.isEmpty() -> {
-                Text("No events added yet.", color = Color(0xFFEC9808))
-            }
-            else -> {
-                LazyColumn {
-                    items(events) { event ->
-                        EventItem(
-                            event = event,
-                            onEdit = {
-                                viewModel.startEditing(events.indexOf(event))
-                            },
-                            onDelete = {
-                                viewModel.deleteEvent(event)
-                                // Clear form if deleting the currently edited event
-                                if (viewModel.editingIndex == events.indexOf(event)) {
-                                    viewModel.editingIndex = null
-                                }
-                            }
-                        )
-                    }
-                }
+        LazyColumn {
+            items(eventList) { event ->
+                EventCard(
+                    event = event,
+                    onEdit = { viewModel.startEditing(event) },
+                    onDelete = { viewModel.deleteEvent(event) }
+                )
             }
         }
     }
 }
 
+
 @Composable
-private fun EventItem(
-    event: Event,
+fun EventCard(
+    event: EventItem,
     onEdit: () -> Unit,
     onDelete: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+            .padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
-            Text(event.title, style = MaterialTheme.typography.titleMedium)
-            Text(event.date, style = MaterialTheme.typography.labelSmall)
-            Text(event.venue, style = MaterialTheme.typography.labelSmall)
-            if (event.description.isNotEmpty()) {
+            Text(text = event.title, style = MaterialTheme.typography.titleMedium)
+            Text(text = "📅 ${event.date} at ${event.time}")
+            Text(text = "📍 ${event.location}")
+            if (event.description.isNotBlank()) {
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(event.description, style = MaterialTheme.typography.bodySmall)
+                Text(text = event.description, style = MaterialTheme.typography.bodySmall)
             }
 
             Spacer(modifier = Modifier.height(8.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
-            ) {
+            Row(horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()) {
                 TextButton(onClick = onEdit) {
                     Text("Edit")
                 }
                 TextButton(onClick = onDelete) {
-                    Text("Delete", color = Color.Red)
+                    Text("Delete")
                 }
             }
         }

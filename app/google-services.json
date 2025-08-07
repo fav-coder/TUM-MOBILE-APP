@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "82855317571",
+    "project_id": "student-buddy-dc613",
+    "storage_bucket": "student-buddy-dc613.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82855317571:android:3f190eac02da49813e04f6",
+        "android_client_info": {
+          "package_name": "com.example.studentbuddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX8g4x8TRIMGAmTwbyb0FVfV6HDyepkAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

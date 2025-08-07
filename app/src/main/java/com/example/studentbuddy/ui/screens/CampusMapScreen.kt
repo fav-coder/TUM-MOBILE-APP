@@ -1,11 +1,8 @@
-package com.example.studentbuddy.ui.screens
-
-
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 
 @Composable
-fun CampusMapScreen(innerPadding: PaddingValues, navController: NavHostController) {
+fun CampusMapScreen(innerPadding: PaddingValues,navController: NavController) {
 
 }

@@ -1,43 +1,49 @@
 package com.example.studentbuddy.ui.screens
 
+import CampusMapScreen
+import EventViewModel
+import EventsScreen
+import QuickHelpScreen
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.studentbuddy.data.models.ClassScheduleItem
-
 
 @Composable
-fun CampusBuddyNavGraph(innerPadding: PaddingValues, navController: NavHostController) {
-    // 🔁 Persisted across navigation
-    val schedule = remember { mutableStateListOf<ClassScheduleItem>() }
+fun CampusBuddyNavGraph(
+    innerPadding: PaddingValues,
+    navController: NavHostController,
+    viewModel: EventViewModel = viewModel(), // ← Inject ViewModel here
+
+
+) {
+    // 🔁 Shared state: Class schedule is remembered across navigation
 
     NavHost(navController = navController, startDestination = "home") {
-        composable("Home") {
-            HomeDashboard(innerPadding = PaddingValues(), navController)
+        composable("home") {
+            HomeDashboard(innerPadding = innerPadding, navController = navController)
         }
 
         composable("ClassScheduleAndReminders") {
-            TimetableMainScreen(schedule, innerPadding)
+            TimetableScreen(innerPadding = innerPadding, viewModel = viewModel())
         }
 
         composable("map") {
-            CampusMapScreen(innerPadding = PaddingValues(), navController)
+            CampusMapScreen(innerPadding = innerPadding, navController = navController)
         }
 
         composable("QuickHelp") {
-            QuickHelpScreen(navController)
+            QuickHelpScreen(navController = navController)
         }
 
         composable("QuickFAQ") {
-            QuickFAQScreen(navController)
+            QuickFAQScreen(navController = navController)
         }
 
         composable("Events") {
-            EventsScreen(navController, innerPadding = PaddingValues())
+            EventsScreen(navController = navController, innerPadding = innerPadding,viewModel = viewModel)
         }
     }
 }

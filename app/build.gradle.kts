@@ -3,7 +3,7 @@ plugins {
         alias(libs.plugins.kotlin.android)
         alias(libs.plugins.kotlin.compose)
         alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
-        id("kotlin-kapt") // Must be above android{} block
+
     }
 
 
@@ -63,23 +63,10 @@ dependencies {
     implementation(libs.maps.compose.v420)
     implementation(libs.play.services.maps)
 
-    // In your module-level build.gradle.kts
+    implementation(libs.firebase.firestore.ktx)
 
 
 
-
-
-
-
-
-
-
-
-    // Room Database (must use consistent versions)
-    val roomVersion = "2.7.2"
-    implementation(libs.androidx.room.runtime)
-    kapt("androidx.room:room-compiler:$roomVersion") // Must be kapt
-    implementation(libs.androidx.room.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -92,6 +79,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose.android)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -101,3 +89,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 }
 
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "com.mapbox.maps") {
+            useVersion("11.2.0")
+        }
+    }
+}
