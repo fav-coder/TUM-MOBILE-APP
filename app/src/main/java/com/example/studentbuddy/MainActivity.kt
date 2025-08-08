@@ -4,15 +4,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.EaseOutBack
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.studentbuddy.ui.screens.CampusBuddyNavGraph
 import com.example.studentbuddy.ui.theme.StudentBuddyTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,38 +27,37 @@ class MainActivity : ComponentActivity() {
         setContent {
             StudentBuddyTheme {
                 val navController = rememberNavController()
+                val scale = remember { Animatable(0f) }
+
+                // State to toggle splash screen visibility
+
+                LaunchedEffect(Unit) {
+                    delay(3000) // Show splash for 5 seconds
+
+                    scale.animateTo(
+                        targetValue = 1f,
+                        animationSpec = tween(durationMillis = 1500, easing = EaseOutBack)
+                    )
+                }
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.White // Ensures white background
+                    color = Color.White
                 ) {
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        containerColor = Color.White // Optional: for extra white background
-                    ) { innerPadding ->
-                        CampusBuddyNavGraph(
-                            navController = navController,
-                            innerPadding = innerPadding // Pass actual padding
-                        )
+
+                        Scaffold(
+                            modifier = Modifier.fillMaxSize(),
+                            containerColor = Color.White
+                        ) { innerPadding ->
+                            CampusBuddyNavGraph(
+                                navController = navController,
+                                innerPadding = innerPadding
+                            )
+                        }
                     }
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StudentBuddyTheme {
-        Greeting("Android")
-    }
-}

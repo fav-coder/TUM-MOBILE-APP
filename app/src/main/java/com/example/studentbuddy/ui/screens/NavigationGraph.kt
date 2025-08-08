@@ -5,9 +5,12 @@ import EventsScreen
 import QuickHelpScreen
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+
 
 
 @Composable
@@ -20,7 +23,8 @@ fun CampusBuddyNavGraph(innerPadding: PaddingValues, navController: NavHostContr
         }
 
         composable("ClassScheduleAndReminders") {
-            TimetableScreen()
+            val timetableViewModel: TimetableViewModel = viewModel()
+            TimetableScreen(viewModel = timetableViewModel)
         }
 
         composable("map") {
@@ -28,11 +32,11 @@ fun CampusBuddyNavGraph(innerPadding: PaddingValues, navController: NavHostContr
         }
 
         composable("QuickHelp") {
-            QuickHelpScreen(navController)
+            QuickHelpScreen(navController, innerPadding =PaddingValues())
         }
 
         composable("QuickFAQ") {
-            QuickFAQScreen(navController)
+            QuickFAQScreen(navController, innerPadding = PaddingValues())
         }
 
         composable("Events") {

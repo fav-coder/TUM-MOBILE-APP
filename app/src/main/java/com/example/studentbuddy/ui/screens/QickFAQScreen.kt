@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun QuickFAQScreen(navController: NavController) {
+fun QuickFAQScreen(navController: NavController, innerPadding: PaddingValues) {
     val faqs = listOf(
         "How do I register for classes?" to "Go to the student portal or registrar’s office to register for your units.",
         "Where can I find the library?" to "The library is located next to the admin block. Open from 8AM to 9PM.",
@@ -25,11 +25,11 @@ fun QuickFAQScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(20.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 16.dp, top = 30.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.Info,
@@ -42,6 +42,7 @@ fun QuickFAQScreen(navController: NavController) {
                 style = MaterialTheme.typography.headlineSmall
             )
         }
+        Spacer(modifier = Modifier.height(20.dp))
 
         LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             items(faqs) { (question, answer) ->
