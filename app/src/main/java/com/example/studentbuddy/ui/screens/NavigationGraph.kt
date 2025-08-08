@@ -1,16 +1,13 @@
 package com.example.studentbuddy.ui.screens
 
-import CampusMapScreen
 import EventsScreen
 import QuickHelpScreen
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.lifecycle.viewmodel.compose.viewModel
-
 
 
 @Composable

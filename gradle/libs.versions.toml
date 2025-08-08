@@ -5,10 +5,12 @@ accompanistPermissionsVersion = "0.37.3"
 activityComposeVersion = "1.10.1"
 agp = "8.11.1"
 android = "11.13.5"
+androidAnnotation = "11.0.0"
 androidNdk27 = "11.14.0"
 androidVersion = "11.3.0"
 coilCompose = "3.3.0"
 coilComposeVersion = "2.7.0"
+comMapboxMapsAndroid = "11.3.1"
 firebaseFirestoreKtx = "25.1.4"
 googleMapsCompose = "6.7.0"
 kotlin = "2.2.0"
@@ -24,9 +26,12 @@ activityCompose = "1.10.1"
 composeBom = "2025.07.00"
 mapboxAndroid = "11.2.0"
 mapboxAndroidSdk = "9.6.2"
-mapsCompose = "6.7.0"
+mapboxMapsComposeVersion = "11.3.1"
+mapsCompose = "11.13.5"
 mapsComposeVersion = "6.7.0"
 mapsExtensionStyle = "11.2.0"
+mapsKotlin = "11.3.1"
+materialIconsExtended = "1.7.8"
 navigationCompose = "2.9.3"
 navigationComposeAndroid = "2.9.3"
 playServicesMaps = "19.2.0"
@@ -49,12 +54,15 @@ accompanist-fonts-google = { module = "com.google.accompanist:accompanist-fonts-
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 accompanist-permissions-v0340 = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissionsVersion" }
 android = { module = "com.mapbox.maps:android", version.ref = "android" }
+android-annotation = { module = "com.mapbox.extension:android-annotation", version.ref = "androidAnnotation" }
+android-compose-map = { module = "com.mapbox.maps:android-compose-map", version.ref = "mapboxAndroid" }
 android-ndk27 = { module = "com.mapbox.maps:android-ndk27", version.ref = "androidNdk27" }
 android-v1120 = { module = "com.mapbox.maps:android", version.ref = "mapboxAndroid" }
 android-v1130 = { module = "com.mapbox.maps:android", version.ref = "androidVersion" }
 androidx-activity-compose-v172 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-compiler-v250 = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
@@ -65,6 +73,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-room-runtime-v261 = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-kt-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
+extension-maps-compose-v1131 = { module = "com.mapbox.extension:maps-compose", version.ref = "mapboxMapsComposeVersion" }
 firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -84,10 +93,12 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 mapbox-android-sdk = { module = "com.mapbox.mapboxsdk:mapbox-android-sdk", version.ref = "mapboxAndroidSdk" }
-maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
+maps-android-v1131 = { module = "com.mapbox.maps:android", version.ref = "comMapboxMapsAndroid" }
+maps-compose = { module = "com.mapbox.extension:maps-compose", version.ref = "mapsCompose" }
 maps-compose-v420 = { module = "com.google.maps.android:maps-compose", version.ref = "googleMapsCompose" }
 maps-compose-v641 = { module = "com.google.maps.android:maps-compose", version.ref = "mapsComposeVersion" }
 maps-extension-style = { module = "com.mapbox.maps:maps-extension-style", version.ref = "mapsExtensionStyle" }
+maps-kotlin = { module = "com.mapbox.extension:maps-kotlin", version.ref = "mapsKotlin" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 play-services-maps-v1820 = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }

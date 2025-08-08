@@ -5,10 +5,8 @@ plugins {
         alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
         id("com.google.gms.google-services")
 
-    }
 
-
-
+}
 
 
 
@@ -22,7 +20,6 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,15 +42,16 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+
     }
 }
+
 
 dependencies {
 
 
     implementation(libs.coil.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.maps.compose)
     implementation(libs.play.services.maps)
     implementation(libs.accompanist.permissions)
     implementation(libs.accompanist.permissions.v0340)
@@ -61,14 +59,16 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.androidx.activity.compose.v172)
     implementation(libs.coil.kt.coil.compose)
-    implementation(libs.maps.compose.v420)
-    implementation(libs.play.services.maps)
 
     implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("androidx.core:core-splashscreen:1.0.1")
+        //
+
+
+    implementation(libs.androidx.material.icons.extended)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -92,9 +92,5 @@ dependencies {
 }
 
 configurations.configureEach {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "com.mapbox.maps") {
-            useVersion("11.2.0")
-        }
-    }
+
 }

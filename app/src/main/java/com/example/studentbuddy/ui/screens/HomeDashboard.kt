@@ -59,7 +59,7 @@ Box(
 
 
         ) {
-            Text(text = " Everything You Need",
+            Text(text = " Everything You Need!",
                 fontSize = 25.sp,
                 fontWeight = Bold,
 
@@ -71,7 +71,7 @@ Box(
             thickness = 1.dp,
             color = Color.Gray
         )
-
+Spacer(modifier = Modifier.height(35.dp))
         Column(){
             Box(
                 modifier = Modifier
